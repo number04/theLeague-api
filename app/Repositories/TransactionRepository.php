@@ -56,6 +56,7 @@ class TransactionRepository
         Lineup::where('player_id', '=', $player_id)
             ->where('week_id', '>=', $week)
             ->update([
+                'franchise_id' => $user_id,
                 'bench' => 1,
             ]);
 
