@@ -64,6 +64,11 @@ class Player extends Model
         return $this->hasOne(Scout::class);
     }
 
+    public function waiver()
+    {
+        return $this->hasOne(Waiver::class);
+    }
+
     // public function trade()
     // {
     //     return $this->morphToMany(Trade::class, 'tradable');

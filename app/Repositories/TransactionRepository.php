@@ -5,6 +5,9 @@ namespace App\Repositories;
 use App\Models\Player;
 use App\Models\Lineup;
 use App\Models\Movement;
+use App\Models\Franchise;
+use App\Models\Claim;
+use App\Models\Waiver;
 use App\Models\Trade;
 use App\Models\Tradable;
 use App\Models\TradePlayerPick;
@@ -43,10 +46,18 @@ class TransactionRepository
             'player_id' => $player_id,
             'type' => 'drop'
         ]);
+
+        Waiver::insert([
+            'player_id' => $player_id
+        ]);
     }
 
     public function add($player_id, $user_id, $week)
     {
+        if (Waiver::where('player_id', $player_id)->count() > 0) {
+            return $this->claim($player_id, $user_id);
+        }
+
         Player::where('id', '=', $player_id)
             ->update([
                 'franchise_id' => $user_id,
@@ -64,6 +75,19 @@ class TransactionRepository
             'franchise_id' => $user_id,
             'player_id' => $player_id,
             'type' => 'add'
+        ]);
+    }
+
+    public function claim($player_id, $user_id)
+    {
+        if (Claim::where('franchise_id', $user_id)->count() > 0) {
+            Claim::where('franchise_id', $user_id)->delete();
+        }
+
+        Claim::insert([
+            'waiver_id' => Waiver::where('player_id', $player_id)->pluck('id')->first(),
+            'franchise_id' => $user_id,
+            'waiver_order' => Franchise::where('id', $user_id)->pluck('waiver_order')->first()
         ]);
     }
 

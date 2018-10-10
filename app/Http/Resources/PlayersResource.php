@@ -33,6 +33,7 @@ class PlayersResource extends JsonResource
             'draftContract' => $this->draft. '-' .$this->contract,
             'isRookie' => $this->rookie_status,
             'isInjured' => $this->injury_status,
+            'onWaivers' => $this->when($this->waiver, 'y'),
             'lineup' => $this->lineup,
             'schedule' => new ScheduleResource($this->schedule),
             'scout' => $this->scout,
