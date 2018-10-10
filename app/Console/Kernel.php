@@ -26,9 +26,19 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('theleague:stats-year')->twiceDaily(20, 23)->timezone('America/Los_Angeles');
-        $schedule->command('theleague:stats-matchup')->twiceDaily(20, 23)->timezone('America/Los_Angeles');
-        $schedule->command('theleague:injury')->daily()->timezone('America/Los_Angeles');
+        $schedule->command('theleague:stats-year')
+            ->hourly()
+            ->between('19:00', '00:00')
+            ->timezone('America/Los_Angeles');
+
+        $schedule->command('theleague:stats-matchup')
+            ->hourly()
+            ->between('19:00', '00:00')
+            ->timezone('America/Los_Angeles');
+
+        $schedule->command('theleague:injury')
+            ->daily()
+            ->timezone('America/Los_Angeles');
     }
 
     /**
