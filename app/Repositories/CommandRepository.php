@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Player;
+use App\Models\Status;
 
 /**
  *
@@ -204,5 +205,22 @@ class CommandRepository
                     ]);
             }
         };
+    }
+
+    public function day()
+    {
+        $day = Status::where('name', 'day')->pluck('value')->first();
+
+        if ($day === 7) {
+            return Status::where('name', 'day')
+                ->update([
+                    'value' => 1
+                ]);
+        }
+
+        Status::where('name', 'day')
+            ->update([
+                'value' => $day + 1
+            ]);
     }
 }

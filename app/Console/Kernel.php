@@ -15,7 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\statsMatchup::class,
         Commands\statsYear::class,
-        Commands\injury::class
+        Commands\injury::class,
+        Commands\day::class
     ];
 
     /**
@@ -37,6 +38,10 @@ class Kernel extends ConsoleKernel
             ->timezone('America/Los_Angeles');
 
         $schedule->command('theleague:injury')
+            ->daily()
+            ->timezone('America/Los_Angeles');
+
+        $schedule->command('theleague:day')
             ->daily()
             ->timezone('America/Los_Angeles');
     }
