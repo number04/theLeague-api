@@ -27,15 +27,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('theleague:stats-matchup')
-            ->hourly()
-            ->between('19:00', '00:00')
-            ->timezone('America/Los_Angeles');
+        $schedule->command('theleague:stats-matchup')->cron('0 */2 * * *');
 
-        $schedule->command('theleague:stats-year')
-            ->hourly()
-            ->between('19:00', '00:00')
-            ->timezone('America/Los_Angeles');
+        $schedule->command('theleague:stats-year')->cron('0 */2 * * *');
 
         $schedule->command('theleague:injury')
             ->daily()
