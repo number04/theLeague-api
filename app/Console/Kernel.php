@@ -27,17 +27,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('theleague:stats-matchup')->cron('0 */2 * * *');
+        $schedule->command('theleague:stats-matchup')->hourly();
 
-        $schedule->command('theleague:stats-year')->cron('0 */2 * * *');
+        $schedule->command('theleague:stats-year')->hourly();
 
-        $schedule->command('theleague:injury')
-            ->daily()
-            ->timezone('America/Los_Angeles');
+        $schedule->command('theleague:injury')->daily();
 
-        $schedule->command('theleague:day')
-            ->daily()
-            ->timezone('America/Los_Angeles');
+        $schedule->command('theleague:day')->daily();
     }
 
     /**
