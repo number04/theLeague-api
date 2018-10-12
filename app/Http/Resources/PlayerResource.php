@@ -38,6 +38,7 @@ class PlayerResource extends JsonResource
             'height' => $this->player_height,
             'weight' => $this->weight,
             'isRookie' => $this->rookie_status,
+            'isInjured' => $this->injury_status,
             'scheduleWeek' => new ScheduleResource($this->schedule),
             'scheduleNext' => new ScheduleResource($this->scheduleNext),
             'stats' => $this->stats($this->position),
