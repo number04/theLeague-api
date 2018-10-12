@@ -189,7 +189,7 @@ class CommandRepository
 
         foreach($data as $val) {
 
-            if ($val['status'] != 'Day-To-Day' && $val['injury'] != 'Suspension') {
+            if ($val['status'] != 'Day-To-Day' && $val['injury'] != 'Suspension' && $val['injury'] != 'Contract Dispute') {
                 Player::where('first_name', $val['firstname'])
                     ->where('last_name', $val['lastname'])
                     ->update([
