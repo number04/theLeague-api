@@ -31,9 +31,9 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('theleague:stats-year')->hourly();
 
-        $schedule->command('theleague:injury')->daily();
+        $schedule->command('theleague:injury')->timezone('Pacific/Auckland')->at('22:00');
 
-        $schedule->command('theleague:day')->daily();
+        $schedule->command('theleague:day')->timezone('Pacific/Auckland')->at('22:00');
     }
 
     /**
