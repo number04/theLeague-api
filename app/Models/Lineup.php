@@ -13,4 +13,10 @@ class Lineup extends Model
     protected $hidden = [
         'player_id', 'franchise_id', 'week_id'
     ];
+
+    public function player()
+    {
+        return $this->belongsTo(Player::class);
+    }
+
 }

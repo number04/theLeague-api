@@ -25,6 +25,11 @@ class Franchise extends Model
         return $this->hasMany(Standing::class);
     }
 
+    public function lineup()
+    {
+        return $this->hasMany(Lineup::class, 'franchise_id', 'id');
+    }
+
     public function need()
     {
         return $this->hasOne(Need::class);

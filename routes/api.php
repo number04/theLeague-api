@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth:api', ], function () {
     Route::group(['prefix' => 'w{week}'], function () {
         Route::get('franchises', 'endpoints\FranchiseController@index');
         Route::get('franchises/{franchise}', 'endpoints\FranchiseController@show');
+        Route::get('scoreboard', 'endpoints\ScoreboardController@index');
 
         Route::get('players', 'endpoints\PlayerController@players');
         Route::get('standings', 'endpoints\StandingController@index');
