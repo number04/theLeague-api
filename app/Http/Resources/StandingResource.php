@@ -33,7 +33,8 @@ class StandingResource extends JsonResource
                 $this->assists +
                 $this->points +
                 $this->hits +
-                $this->shots
+                $this->shots +
+                $this->faceoff_wins
             ),
 
             'goalie' => (
@@ -48,6 +49,7 @@ class StandingResource extends JsonResource
                 $this->points +
                 $this->hits +
                 $this->shots +
+                $this->faceoff_wins +
                 $this->saves +
                 $this->save_percentage +
                 $this->goals_against_average +
