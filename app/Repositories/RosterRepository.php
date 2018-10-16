@@ -14,61 +14,37 @@ use App\Models\Need;
 
 class RosterRepository
 {
-    public function block($id, $value)
+
+    public function manage($id, $column)
     {
         Player::where('id', '=', $id)
             ->update([
-                'block' => $value
+                $column => DB::raw('CASE WHEN '. $column .' = 1 THEN 0 WHEN '. $column .' = 0 THEN 1 ELSE NULL END')
             ]);
     }
 
-    public function keeper($id, $value)
+    public function scout($id, $column)
     {
-        Player::where('id', '=', $id)
+        Scout::where('player_id', '=', $id)
             ->update([
-                'keeper' => $value
+                $column => DB::raw('CASE WHEN `'. $column .'` = 1 THEN 0 WHEN `'. $column .'` = 0 THEN 1 ELSE NULL END')
             ]);
     }
 
-    public function scout($player_id, $column, $value)
+    public function need($id, $column)
     {
-        Scout::where('player_id', '=', $player_id)
-            ->update([
-                $column => $value
+        Need::where('franchise_id', '=', $id)
+            ->update ([
+                $column => DB::raw('CASE WHEN `'. $column .'` = 1 THEN 0 WHEN `'. $column .'` = 0 THEN 1 ELSE NULL END')
             ]);
     }
 
     public function cap($user_id, $id, $value, $cap)
     {
-        if ($value === 1) {
-            Franchise::where('id', '=', $user_id)
-                ->increment('cap_hit', $cap);
-        } else {
-            Franchise::where('id', '=', $user_id)
-                ->decrement('cap_hit', $cap);
+        if ($value === 0) {
+            return Franchise::where('id', '=', $user_id)->increment('cap_hit', $cap);
         }
-    }
 
-    public function need($franchise_id, $need, $value)
-    {
-        Need::where('franchise_id', '=', $franchise_id)
-            ->update ([
-                $need => $value
-            ]);
+        return Franchise::where('id', '=', $user_id)->decrement('cap_hit', $cap);
     }
-
-    // public function need($user_id, $pick, $center, $left_wing, $right_wing, $defence, $goalie, $team)
-    // {
-    //     DB::table ('needs')
-    //     ->where ('franchise_id', '=', $user_id)
-    //     ->update ([
-    //         'pick' => $pick,
-    //         'center' => $center,
-    //         'left_wing' => $left_wing,
-    //         'right_wing' => $right_wing,
-    //         'defence' => $defence,
-    //         'goalie' => $goalie,
-    //         'team' => $team
-    //     ]);
-    // }
 }
