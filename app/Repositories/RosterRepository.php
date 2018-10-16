@@ -41,7 +41,7 @@ class RosterRepository
 
     public function cap($user_id, $id, $value, $cap)
     {
-        if ($value === 0) {
+        if ($value === 1) {
             return Franchise::where('id', '=', $user_id)->increment('cap_hit', $cap);
         }
 
