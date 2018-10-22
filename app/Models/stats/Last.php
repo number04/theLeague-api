@@ -12,8 +12,7 @@ class Last extends Model
 
     protected $appends = [
         'goals_against_average',
-        'save_percentage',
-        'last_week'
+        'save_percentage'
     ];
 
     public function player()

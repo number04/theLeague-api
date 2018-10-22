@@ -16,7 +16,8 @@ class Kernel extends ConsoleKernel
         Commands\statsMatchup::class,
         Commands\statsYear::class,
         Commands\injury::class,
-        Commands\day::class
+        Commands\day::class,
+        Commands\waivers::class
     ];
 
     /**
@@ -32,6 +33,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('theleague:stats-year')->hourly();
 
         $schedule->command('theleague:injury')->hourly();
+
+        $schedule->command('theleague:waivers')->timezone('Pacific/Auckland')->at('22:00');
 
         $schedule->command('theleague:day')->timezone('Pacific/Auckland')->at('22:00');
     }

@@ -14,8 +14,6 @@ class ScoreboardResource extends JsonResource
      */
     public function toArray($request)
     {
-        // dd();
-
         return [
             'franchiseId' => $this->id,
             'franchiseName' => $this->franchise_name,

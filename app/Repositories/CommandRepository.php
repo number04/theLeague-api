@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Player;
 use App\Models\Status;
+use App\Models\Waiver;
 
 /**
  *
@@ -222,5 +223,10 @@ class CommandRepository
             ->update([
                 'value' => $day + 1
             ]);
+    }
+
+    public function waivers()
+    {
+        return Waiver::offWaivers()->delete();
     }
 }

@@ -5,21 +5,21 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Repositories\CommandRepository;
 
-class statsMatchup extends Command
+class waivers extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'theleague:stats-matchup';
+    protected $signature = 'theleague:waivers';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'update matchup stats';
+    protected $description = 'delete player off waivers';
 
     /**
      * Create a new command instance.
@@ -38,6 +38,6 @@ class statsMatchup extends Command
      */
     public function handle(CommandRepository $command)
     {
-        $command->statsMatchup('4', '2018-10-22', '2018-10-29');
+        $command->waivers();
     }
 }

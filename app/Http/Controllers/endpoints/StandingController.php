@@ -12,7 +12,11 @@ class StandingController extends Controller
 {
     public function index($week)
     {
-        return StandingResource::collection(Standing::where('matchup_id', '<' , $week)->get())->additional([
+        return StandingResource::collection(
+            Standing::where('matchup_id', '<' , $week)
+            ->get()
+        )
+        ->additional([
             'standing' => [
                 $this->standing(1),
                 $this->standing(2),
