@@ -38,6 +38,6 @@ class statsMatchup extends Command
      */
     public function handle(CommandRepository $command)
     {
-        $command->statsMatchup('4', '2018-10-22', '2018-10-29');
+        $command->statsMatchup('5', '2018-10-29', '2018-11-05');
     }
 }
